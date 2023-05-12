@@ -1,4 +1,5 @@
 import re
+from functools import cmp_to_key
 '''
 Напишите функцию, которая принимает на вход строку и для каждого особенного номера, встречающегося в строке, выводит соответствующий хороший номер.
 '''
@@ -28,7 +29,11 @@ def task2():
 которое может получиться в результате конкатенации всех строк из этого списка.
 '''
 def task3(strings: list) -> int:
-    return int(''.join(list(sorted(strings, reverse=True))))
+    if strings:
+        return (int(''.join(
+            list(sorted(strings, key=cmp_to_key(lambda p1, p2: int(p1 + p2) - int(p2 + p1)), reverse=True)))))
+    else:
+        return 0
 
 
 
